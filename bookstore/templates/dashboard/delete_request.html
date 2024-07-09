@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+Delete Request Management
+{% endblock title %}
+
+{% block stylesheets %}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Custom styles for this page -->
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    .delete-request-management .card {
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .delete-request-management .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .delete-request-management .chat {
+        background: #ffffff;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .delete-request-management .chat-user-special {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #007bff;
+    }
+    .delete-request-management .heading {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: 'Merriweather', serif; /* Change the font family for the heading */
+        margin-bottom: 20px;
+    }
+    .delete-request-management .card-header {
+        background: #007bff;
+        color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        border-radius: 8px 8px 0 0;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+    .delete-request-management .card-header i {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+    .delete-request-management .card-body {
+        padding: 25px;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container my-4 delete-request-management">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header">
+                    <i class="fas fa-trash-alt"></i>
+                    <h5 class="mb-0">Delete Request Management</h5>
+                </div>
+                <div class="card-body">
+                    <div class="heading">Manage your delete requests efficiently</div>
+                    <div class="row">
+                        <div class="col-12">
+                            {% for feedback in feedbacks %}
+                                <div class="chat">
+                                    <strong><small class="chat-user-special">{{ feedback.delete_request }}</small></strong>
+                                </div>
+                            {% empty %}
+                                <h4 class="text-center text-muted">No delete requests</h4><br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.delete-request-management .card');
+        cards.forEach(card => {
+            card.addEventListener('mouseover', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+            });
+            card.addEventListener('mouseout', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    });
+</script>
+{% endblock scripts %}

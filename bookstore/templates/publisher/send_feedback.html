@@ -1,0 +1,55 @@
+{% extends 'publisher/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6" style="padding-top: 87px;">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-table text-white"></i> Envoie-nous Ta Reclamation
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'send_feedback' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="feedback">Entrer votre Reclamation </label>
+                            <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        <div style="color: blue">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add jQuery and Bootstrap JS for animation effects -->
+<script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Custom JS for animations -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Smooth scroll to form on page load
+        $('html, body').animate({
+            scrollTop: $(".card").offset().top
+        }, 1000);
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'publisher/base.html' %}
+{% load static %}
+
+{% block title %}
+À propos d'E-BIBLIOTHEQUE
+{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center" style="padding-top: 65px;">
+        <div class="col-sm-8">
+            <div class="card mb-3 shadow-sm border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    Vous voulez en savoir plus sur nous ?
+                </div>
+                <div class="card-body">
+                    <p class="text-justify">
+                        E-BIBLIOTHEQUE est un système de bibliothèque en ligne basé sur Django, développé par <strong>Mohamed AZZAM</strong> et <strong>MAJGHIROU Mohamed Riyad</strong>.
+                        Le principal objectif d'E-BIBLIOTHEQUE est de connecter les personnes possédant des bibliothèques personnelles à domicile en une bibliothèque unifiée, leur permettant de partager et d'accéder à différents livres provenant de divers pays à travers le monde.
+                        Les utilisateurs peuvent télécharger les livres qu'ils souhaitent partager et accéder aux livres partagés par d'autres utilisateurs, promouvant ainsi une culture de partage de connaissances et d'engagement communautaire.
+                    </p>
+                    <p class="text-justify">
+                      <strong>Mohamed AZZAM</strong> et <strong>MAJGHIROU Mohamed Riyad</strong> sont des développeurs passionnés, dédiés à la création de solutions innovantes qui améliorent l'accessibilité et le partage des connaissances. Grâce à E-BIBLIOTHEQUE, ils visent à combler le fossé entre les lecteurs et une vaste gamme de ressources littéraires, en favorisant une communauté mondiale d'enthousiastes de la lecture.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.dataTables.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

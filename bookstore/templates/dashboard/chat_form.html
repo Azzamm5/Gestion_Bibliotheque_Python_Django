@@ -1,0 +1,92 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center" style="padding-top: 30px;">
+        <div class="col-sm-8">
+            <div class="card mb-3 shadow-sm border-0" style="background-color: #f8f9fa;">
+                <div class="card-header bg-dark text-white text-center">
+                    <h3>Welcome To BookApp Group Chat</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" class="myform" id="chatForm">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Post" class="btn btn-lg btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container-fluid {
+        padding-top: 30px;
+    }
+    .card {
+        background-color: #f8f9fa !important;
+        border-radius: 10px;
+    }
+    .card-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+    }
+    .card-body {
+        padding: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+        color: #000 !important; /* Set input text color to black */
+        background-color: #fff; /* Ensure background is white for contrast */
+        border: 1px solid #ccc; /* Add a border for better visibility */
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .form-group input[type="text"]::placeholder,
+    .form-group textarea::placeholder,
+    .form-group select::placeholder {
+        color: #888; /* Placeholder text color */
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+
+
+
+<script>
+    // JavaScript validation to prevent empty submissions
+    document.getElementById('chatForm').addEventListener('submit', function(event) {
+        var inputs = document.querySelectorAll('.myform input, .myform textarea');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim() === '') {
+                event.preventDefault();
+                alert('Please fill out all fields before submitting.');
+                return;
+            }
+        }
+    });
+</script>
+
+{% endblock content %}

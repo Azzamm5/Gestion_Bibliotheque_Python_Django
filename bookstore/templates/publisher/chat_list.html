@@ -1,0 +1,42 @@
+{% extends 'publisher/base.html' %}
+
+{% block title %}
+Chat Management
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center" style="padding-top: 65px;">
+        <div class="col-sm-8">
+            <div class="card mb-3 shadow-sm border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <i class="fas fa-comments"></i> Chat Management
+                </div>
+                <div class="card-body">
+                    <a href="/ulchat" class="btn btn-primary mb-3">
+                        <i class="fa fa-refresh" aria-hidden="true"></i> Refresher pour des Nouveaux messages
+                    </a>
+                    {% for chat in object_list %}
+                    <div class="chat p-3 mb-3" style="background: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                        {% if chat.user.is_superuser or chat.user.is_admin %}
+                        <small class="chat-user-special text-success font-weight-bold"> {{ chat.user }} - Admin </small>
+                        {% elif chat.user.is_librarian %}
+                        <small class="chat-user-special text-danger font-weight-bold"> {{ chat.user }} - Librarian </small>    
+                        {% else %}
+                        <small class="chat-user text-primary font-weight-bold"> {{ chat.user }} - Publisher </small>              
+                        {% endif %}
+                        <p class="chat-content mt-2">{{ chat|linebreaks }}</p>
+                        <small class="chat-date text-muted">{{ chat.posted_at }}</small>
+                    </div>
+                    {% empty %}
+                    <h4 class="heading text-center text-muted">Aucun Message pour le moment !</h4>
+                    {% endfor %}
+                    <a href="{% url 'ucchat' %}" class="btn btn-outline-primary mt-3">Nouveau Message</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
